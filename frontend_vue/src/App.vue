@@ -1,18 +1,25 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <AppNavbar v-if="isAuthenticated" />
+
+    <LandingNavbar v-else />
+
+
+    <div class="flex justify-center items-center h-screen">
+        <router-view />
+    </div>
+
+    <AppFooter />
+
+
+  </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+html, body {
+  height: 100%;
+  background-color: white;
 }
 
 nav {
@@ -22,9 +29,23 @@ nav {
     font-weight: bold;
     color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 }
 </style>
+
+
+
+<script>
+import AppNavbar from './components/AppNavbar.vue';
+import LandingNavbar from './components/LandingNavbar.vue';
+import AppFooter from './components/AppFooter.vue';
+
+export default {
+  name: 'App',
+  components: {
+    AppNavbar,
+    LandingNavbar,
+    AppFooter,
+  }
+}
+</script>
